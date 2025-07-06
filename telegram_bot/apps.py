@@ -35,7 +35,7 @@ class TelegramBotConfig(AppConfig):
                     from telegram_bot import views
                     views.setwebhook()
 
-                    signal.signal(signal.SIGBREAK, shutdown_ngrok)
+                    signal.signal(signal.SIGTRAP, shutdown_ngrok)
                 except PyngrokNgrokError as e:
                     print(f'Ngrok error: {e.ngrok_error}')
         else:
