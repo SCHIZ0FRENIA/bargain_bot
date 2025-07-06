@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_WEBHOOK_SECRET = os.getenv('TELEGRAM_WEBHOOK_SECRET')
 
-if not TELEGRAM_WEBHOOK_SECRET or not TELEGRAM_BOT_TOKEN:
+if not TELEGRAM_BOT_TOKEN:
     raise ValueError("Telegram os variables are not set recheck them")
 
 # Ngrok settings
@@ -144,6 +144,3 @@ if USE_NGROK:
         conf.get_default().auth_token = NGROK_AUTH_TOKEN
 
     NGROK_PORT = os.getenv('NGROK_PORT', '8000')
-
-
-print(f'TEST OF GETENV {TELEGRAM_WEBHOOK_SECRET} and key {TELEGRAM_BOT_TOKEN}')
