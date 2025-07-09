@@ -144,3 +144,47 @@ if USE_NGROK:
         conf.get_default().auth_token = NGROK_AUTH_TOKEN
 
     NGROK_PORT = os.getenv('NGROK_PORT', '8000')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO', # You can set this to 'DEBUG' to see all messages
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple', # Or 'verbose' if you want more details in console
+            'stream': 'ext://sys.stdout', # Explicitly direct to stdout
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'telegram_bot': { # Logger for the telegram_bot app
+            'handlers': ['console'],
+            'level': 'DEBUG', # Set to DEBUG to capture all levels of messages for the bot
+            'propagate': False,
+        },
+        'pyngrok': { # Logger for pyngrok library
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
