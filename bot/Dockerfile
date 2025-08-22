@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim
 
 WORKDIR /app
 
@@ -17,6 +17,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 ENTRYPOINT []
 
-CMD ["uv", "run", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["uv", "run", "main.py"]
 
 EXPOSE 8000
