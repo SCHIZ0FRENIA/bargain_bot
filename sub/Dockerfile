@@ -17,4 +17,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 ENTRYPOINT []
 
-CMD ["uv", "run", "main.py"]
+CMD ["uv", "run", "manage.py", "runserver"]
+
+EXPOSE 8000
